@@ -86,7 +86,7 @@ module.exports.getFavourites = function (id) {
         User.findById(id)
             .exec()
             .then(user => {
-                console.log(user,'fav2');
+                console.log(user.favourites,'fav2');
                 resolve(user.favourites)
             }).catch(err => {
                 reject(`Unable to get favourites for user with id: ${id}`);
