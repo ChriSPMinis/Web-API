@@ -80,7 +80,7 @@ module.exports.checkUser = function (userData) {
     });
 };
 
-module.exports.getFavourite = function (id) {
+module.exports.getFavourites = function (id) {
     return new Promise(function (resolve, reject) {
         User.findById(id)
             .exec()
@@ -92,7 +92,7 @@ module.exports.getFavourite = function (id) {
     });
 }
 
-module.exports.addFavourite = function (id, favId) {
+module.exports.addFavourites = function (id, favId) {
     return new Promise(function (resolve, reject) {
         User.findById(id).exec().then(user => {
             if (user.favourite.length < 50) {
@@ -109,7 +109,7 @@ module.exports.addFavourite = function (id, favId) {
     });
 }
 
-module.exports.removeFavourite = function (id, favId) {
+module.exports.removeFavourites = function (id, favId) {
     return new Promise(function (resolve, reject) {
         User.findByIdAndUpdate(id,
             { $pull: { favourite: favId } },
