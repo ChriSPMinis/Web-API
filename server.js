@@ -58,8 +58,10 @@ app.post('/api/user/login', (req, res) => {
 });
 
 app.get('/api/user/favourites', passport.authenticate('jwt', { session: false }), (req, res) => {
+    console.log(req.user._id, 'check1');
     userService.getFavourites(req.user._id)
     .then(data => {
+        console.log(data);
         res.json(data);
     }).catch(msg => {
         res.status(422).json({ error: msg });
