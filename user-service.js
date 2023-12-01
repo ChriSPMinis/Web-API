@@ -82,9 +82,11 @@ module.exports.checkUser = function (userData) {
 
 module.exports.getFavourites = function (id) {
     return new Promise(function (resolve, reject) {
+        console.log(id, 'fav1');
         User.findById(id)
             .exec()
             .then(user => {
+                console.log(user,'fav2');
                 resolve(user.favourites)
             }).catch(err => {
                 reject(`Unable to get favourites for user with id: ${id}`);
