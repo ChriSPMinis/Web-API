@@ -44,22 +44,13 @@ app.post('/api/user/register', (req, res) => {
 });
 
 app.post('/api/user/login', (req, res) => {
-    console.log(req.body, 'test1');
     userService.checkUser(req.body)
     .then((user) => {
-        console.log('test2');
         let payload = {
-            //_id: user._id,
+            _id: user._id,
             userName: user.userName,
           };
-          console.log(payload, jwtOptions.secretOrKey, 'test3');
-          let token;
-          try {
-              token = jwt.sign(payload, jwtOptions.secretOrKey);
-              console.log(token, 'test4');
-          } catch (error) {
-              console.error('Error generating JWT token:', error);
-          }
+          let token = jwt.sign(payload, jwtOptions.secretOrKey);
         res.json({ 'message': 'login successful', 'token': token });
     }).catch(msg => {
         res.status(422).json({ 'message': msg });

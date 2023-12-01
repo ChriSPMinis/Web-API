@@ -59,7 +59,6 @@ module.exports.registerUser = function (userData) {
 
 module.exports.checkUser = function (userData) {
     return new Promise(function (resolve, reject) {
-        console.log(userData, 'CHECK1');
         User.find({ userName: userData.userName })
         .limit(1)
         .exec()
