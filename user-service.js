@@ -9,8 +9,8 @@ let userSchema = new Schema({
         unique: true
     },
     password: String,
-    favourites: String,
-    history: String
+    favourites: [String],
+    history: [String]
 });
 
 let User;
