@@ -40,7 +40,6 @@ module.exports.registerUser = function (userData) {
             bcrypt.hash(userData.password, 10).then(hash => {
 
                 userData.password = hash;
-
                 let newUser = new User(userData);
 
                 newUser.save().then(() => {
