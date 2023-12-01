@@ -52,8 +52,13 @@ app.post('/api/user/login', (req, res) => {
             userName: user.userName,
           };
           console.log(payload, jwtOptions.secretOrKey, 'test3');
-        let token = jwt.sign(payload, jwtOptions.secretOrKey);
-        console.log(token, 'test4');
+          let token;
+          try {
+              token = jwt.sign(payload, jwtOptions.secretOrKey);
+              console.log(token, 'test4');
+          } catch (error) {
+              console.error('Error generating JWT token:', error);
+          }
         res.json({ 'message': 'login successful', 'token': token });
     }).catch(msg => {
         res.status(422).json({ 'message': msg });
